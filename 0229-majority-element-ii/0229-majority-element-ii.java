@@ -5,12 +5,10 @@ class Solution {
             list.add(nums[0]);
             return list;
         }
-        if(nums.length==2){
-            if(nums[0]!=nums[1]){
-                list.add(nums[0]);
-                list.add(nums[1]);
-                return list;
-            }
+        if(nums.length==2 && nums[0]!=nums[1]){
+            list.add(nums[0]);
+            list.add(nums[1]);
+            return list;
         }
         Arrays.sort(nums);
         int n=nums.length/3;
