@@ -4,7 +4,7 @@ class Solution {
         int j=matrix[0].length-1;
         while(j>=0 && i<matrix.length){
             if(target<matrix[i][j]){
-                j=j-1;
+                j--;
             }
             else if(target>matrix[i][j]){
                 i++;
