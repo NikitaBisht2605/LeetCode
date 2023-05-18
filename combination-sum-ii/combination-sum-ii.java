@@ -3,15 +3,11 @@ class Solution {
         List<List<Integer>> arr = new ArrayList<>();
         List<Integer> flag=new ArrayList<>();
         Arrays.sort(candidates);
-        //System.out.println(Arrays.toString(candidates));
         combination(candidates,target,arr,0,flag);
         return arr;
     }
     static void combination(int[] candidates, int target,List<List<Integer>> arr,int ind,List<Integer> flag){
         if(target==0){
-            //List<Integer> dummy=new ArrayList<>(flag);
-            //Collections.copy(dummy, flag);
-            //Collections.sort(dummy);
             if(!arr.contains(flag)){
                 arr.add(new ArrayList<>(flag));
             }
