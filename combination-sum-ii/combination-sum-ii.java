@@ -8,9 +8,7 @@ class Solution {
     }
     static void combination(int[] candidates, int target,List<List<Integer>> arr,int ind,List<Integer> flag){
         if(target==0){
-            if(!arr.contains(flag)){
-                arr.add(new ArrayList<>(flag));
-            }
+            arr.add(new ArrayList<>(flag));
             return;
         }
         for(int i = ind;i<candidates.length;i++){
