@@ -2,12 +2,10 @@ class MinStack {
     int minEle;
     Stack<Integer> s1;
 	Stack<Integer> s2;
-    //ArrayList<Integer> arr;
     
     public MinStack() {
         s1=new Stack<>();
 		s2=new Stack<>();
-        //arr=new ArrayList<>();
     }
     
     public void push(int val) {
