@@ -3,7 +3,7 @@ class Solution {
         Stack<Character> stack=new Stack<>();
         String str="";
         for(int i=0;i<s.length();i++){
-            System.out.println(stack);
+            //System.out.println(stack);
             char c=s.charAt(i);
             if(c==']'){
                 while(!stack.isEmpty() && stack.peek()!='['){
