@@ -10,7 +10,7 @@ class Solution {
         }
         String str="";
         while(!stack.isEmpty()){
-            str=Character.toString(stack.pop())+str;
+            str = stack.pop() + str;
         }
         return str;
     }
