@@ -9,7 +9,8 @@ class Solution {
     public String simplifyPath(String path) {
         Stack<String> stack = new Stack<>();
         //System.out.println(path);
-        for(int i=0;i<path.length();i++){
+        int i=0;
+        while(i<path.length()){
             if(path.charAt(i)=='/'){
                 i+=1;
                 String temp = "";
@@ -17,7 +18,6 @@ class Solution {
                     temp += path.charAt(i);
                     i++;
                 }
-                i -= 1;
                 if(temp.equals(".")){
                     continue;
                 }
