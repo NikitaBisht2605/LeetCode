@@ -15,34 +15,27 @@
  */
 class Solution {
     public boolean isSameTree(TreeNode p, TreeNode q) {
-        boolean[] b=new boolean[1];
-        b[0]=false;
-        check(p,q,b);
-        return b[0];
+        return check(p,q);
+       
     }
-    static boolean check(TreeNode p,TreeNode q,boolean[] b){
+    static boolean check(TreeNode p,TreeNode q){
         if(p==null && q==null){
-            b[0]=true;
             return true;
         }
         if(p==null || q==null){
-            b[0]=false;
             return false;
         }
         if(p.val==q.val){
-            b[0]=true;
-            if(check(p.left,q.left,b)==false){
+            if(check(p.left,q.left)==false){
                 return false;
             }
-            if(check(p.right,q.right,b)==false){
+            if(check(p.right,q.right)==false){
                 return false;
             }
         }
         else{
-            b[0]=false;
             return false;
         }
-        b[0]=true;
         return true;
     }
 }
