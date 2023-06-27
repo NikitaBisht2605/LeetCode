@@ -30,7 +30,7 @@ class Solution {
             return;
         }
         s=s+Integer.toString(node.val)+"->";
-        System.out.println(s);
+        //System.out.println(s);
         if(node.left!=null){
             reachLeaf(node.left,s,list2);
             //s=s.substring(0,s.length()-1);
