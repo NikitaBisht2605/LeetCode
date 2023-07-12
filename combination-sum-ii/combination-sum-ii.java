@@ -1,24 +1,32 @@
 class Solution {
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
-        List<List<Integer>> arr = new ArrayList<>();
-        List<Integer> flag=new ArrayList<>();
+        List<List<Integer>> ans=new ArrayList<>();
+        List<Integer> list=new ArrayList<>();
         Arrays.sort(candidates);
-        combination(candidates,target,arr,0,flag);
-        return arr;
+        int i=0;
+        recursion(i,list,ans,target,candidates);
+        return ans;
     }
-    static void combination(int[] candidates, int target,List<List<Integer>> arr,int ind,List<Integer> flag){
+    static void recursion(int ind,List<Integer> list,List<List<Integer>> ans,int target,int[] candidates){
         if(target==0){
-            arr.add(new ArrayList<>(flag));
+            ans.add(new ArrayList<>(list));
             return;
         }
-        for(int i = ind;i<candidates.length;i++){
-            if(i != ind && candidates[i] == candidates[i-1]){
+        if(ind==candidates.length){
+            return;
+        }
+        for(int i=ind;i<candidates.length;i++){ //0-6 1-6 2-6 3-6 4-6
+            if(ind!=i && candidates[i]==candidates[i-1]){
                 continue;
             }
-            if(candidates[i] > target){break;}
-            flag.add(candidates[i]);
-            combination(candidates,target-candidates[i],arr,i+1,flag);
-            flag.remove(flag.size()-1);
+            if(target>=candidates[i]){
+                list.add(candidates[i]);
+                recursion(i+1,list,ans,target-candidates[i],candidates);
+                list.remove(list.size()-1);
+            }
+            else{
+                break;
+            }
         }
     }
 }
