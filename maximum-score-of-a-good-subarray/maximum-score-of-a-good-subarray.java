@@ -33,8 +33,6 @@ class Solution {
         }
 
         int ans=0;
-        System.out.println(Arrays.toString(nsr));
-        System.out.println(Arrays.toString(nsl));
         for(int i=0;i<nums.length;i++){
             if(nsl[i]+1<=k && nsr[i]-1>=k){
                 ans=Math.max(ans,nums[i]*(nsr[i]-nsl[i]-1));
