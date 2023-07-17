@@ -1,70 +1,65 @@
 class Solution {
     public int maximalRectangle(char[][] matrix) {
         int[] sum=new int[matrix[0].length];
-        int maxRec=0;
+        int finArea=0;
         for(int i=0;i<matrix.length;i++){
-            for(int j=0;j<matrix[i].length;j++){
-                if(i!=0 && Character.getNumericValue(matrix[i][j])==0 && Character.getNumericValue(matrix[i-1][j])==1){
-                    sum[j]=0;
+            for(int j=0;j<matrix[0].length;j++){
+                if(i==0){
+                    sum[j]=Character.getNumericValue(matrix[i][j]);
                 }
                 else{
-                    sum[j]=sum[j]+Character.getNumericValue(matrix[i][j]);
+                    if(matrix[i][j]=='1'){
+                        sum[j]=sum[j]+Character.getNumericValue(matrix[i][j]);
+                    }
+                    else{
+                        sum[j]=0;
+                    }
                 }
             }
             //System.out.println(Arrays.toString(sum));
-            int RecArea=MAH(sum);
-            //System.out.println(RecArea);
-            if(maxRec<RecArea){
-                maxRec=RecArea;
-            }
+            int maxArea=findArea(sum);
+            //System.out.println(maxArea);
+            finArea=Math.max(maxArea,finArea);
         }
-        return maxRec;
+        return finArea;
     }
-    static int MAH(int arr[]){
-        int n=arr.length;
-        Stack<Integer> stack=new Stack<>();
-        int[] nsr = new int[n];
-        int[] nsl = new int[n];
-
-        for(int i=n-1;i>=0;i--){
-            while(!stack.isEmpty() && arr[stack.peek()]>=arr[i]){
-                stack.pop();
+    static int findArea(int[] sum){
+        Stack<Integer> s=new Stack<Integer>();
+        int[] nsl=new int[sum.length];
+        int[] nsr=new int[sum.length];
+        for(int i=sum.length-1;i>=0;i--){
+            while(!s.isEmpty() && sum[i]<=sum[s.peek()]){
+                s.pop();
             }
-            if(stack.isEmpty()){
-                nsr[i]=n;
+            if(s.isEmpty()){
+                nsr[i]=sum.length;
             }
             else{
-                nsr[i]=stack.peek();
+                nsr[i]=s.peek();
             }
-            stack.push(i);
-        }
-        //System.out.println(Arrays.toString(nsr));
-        while(!stack.isEmpty()){
-            stack.pop();
+            s.push(i);
         }
 
-        for(int i=0;i<n;i++){
-            while(!stack.isEmpty() && arr[stack.peek()]>=arr[i]){
-                stack.pop();
+        while(!s.isEmpty()){
+            s.pop();
+        }
+
+        for(int i=0;i<sum.length;i++){
+            while(!s.isEmpty() && sum[i]<=sum[s.peek()]){
+                s.pop();
             }
-            if(stack.isEmpty()){
+            if(s.isEmpty()){
                 nsl[i]=-1;
             }
             else{
-                nsl[i]=stack.peek();
+                nsl[i]=s.peek();
             }
-            stack.push(i);
+            s.push(i);
         }
-        //System.out.println(Arrays.toString(nsl));
-
-        int maxArea=0;
-        for(int i=0;i<n;i++){
-            int Area=arr[i]*(nsr[i]-nsl[i]-1);
-            //System.out.println(Area);
-            if(Area>maxArea){
-                maxArea=Area;
-            }
+        int ans=0;
+        for(int i=0;i<sum.length;i++){
+            ans=Math.max(ans,(nsr[i]-nsl[i]-1)*sum[i]);
         }
-        return maxArea;
+        return ans;
     }
 }
