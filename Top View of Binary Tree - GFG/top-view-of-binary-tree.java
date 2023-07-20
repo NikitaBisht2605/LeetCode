@@ -127,12 +127,13 @@ class Tuple{
     Node node;
     int row;
     int col;
-    public Tuple(Node _node, int _row,int _col){
+    public Tuple(Node _node, int _row, int _col){
         node=_node;
         row=_row;
         col=_col;
     }
 }
+
 class Solution
 {
     //Function to return a list of nodes visible from the top view 
@@ -141,7 +142,7 @@ class Solution
     {
         // add your code
         TreeMap<Integer,TreeMap<Integer,PriorityQueue<Integer>>> map=new TreeMap<>();
-        Queue<Tuple> q= new LinkedList<Tuple>();
+        Queue<Tuple> q=new LinkedList<Tuple>();
         q.offer(new Tuple(root,0,0));
         while(!q.isEmpty()){
             Tuple tuple=q.poll();
@@ -160,10 +161,12 @@ class Solution
                 q.offer(new Tuple(node.right,x+1,y+1));
             }
         }
-        ArrayList<Integer> list= new ArrayList<>();
+        ArrayList<Integer> list=new ArrayList<Integer>();
         for(TreeMap<Integer,PriorityQueue<Integer>> ys:map.values()){
-            for(PriorityQueue<Integer> p:ys.values()){
-                list.add(p.poll());
+            for(PriorityQueue<Integer> queue:ys.values()){
+                while(!queue.isEmpty()){
+                    list.add(queue.poll());
+                }
             }
         }
         return list;
