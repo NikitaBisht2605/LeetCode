@@ -6,7 +6,7 @@ class Solution {
                 matrix[i][j]=matrix[j][i];
                 matrix[j][i]=temp;
             }
-            System.out.println(Arrays.toString(matrix[i]));
+            //System.out.println(Arrays.toString(matrix[i]));
         }
         
         int k=matrix.length-1;
