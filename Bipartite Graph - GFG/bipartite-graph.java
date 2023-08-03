@@ -46,28 +46,28 @@ class Solution
         }
         for(int i=0;i<V;i++){
             if(color[i]==-1){
-                if(bfs(i,color,adj)==false){
+                if(dfs(i,0,color,adj)==false){
                     return false;
                 }
             }
         }
         return true;
     }
-    static boolean bfs(int start, int[] color,ArrayList<ArrayList<Integer>>adj ){
-        Queue<Integer> q=new LinkedList<Integer>();
-        q.offer(start);
-        color[start]=0;
-        while(!q.isEmpty()){
-            int len=q.size();
-            int node=q.poll();
-            for(Integer it:adj.get(node)){
-                if(color[it]==-1){
-                    color[it]=1-color[node];
-                    q.offer(it);
-                }
-                else if(color[it]==color[node]){
+    static boolean dfs(int ind,int val,int[] color,ArrayList<ArrayList<Integer>> adj){
+        if(ind!=0){
+            color[ind]=1-val;
+        }
+        else{
+            color[ind]=0;
+        }
+        for(Integer i:adj.get(ind)){
+            if(color[i]==-1){
+                if(dfs(i,color[ind],color,adj)==false){
                     return false;
                 }
+            }
+            else if(color[ind]==color[i]){
+                return false;
             }
         }
         return true;
